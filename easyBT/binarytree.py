@@ -114,15 +114,19 @@ class BinaryTree:
     
     def SerializeTree(self,root:TreeNode) -> List[int]:
         if not root:return []
-        queue=[]
+        queue=[root]
         result=[]
         while queue:
             temp=queue.pop(0)
             if temp:
-                result.append(temp)
+                result.append(temp.val)
                 queue.extend([temp.left,temp.right])
             else:
                 result.append("*")
+        i=len(result)-1  
+        while result[i]=='*':
+            result.pop()
+            i-=1
         return result
     
     def DesializeTree(self,data:List[int]) -> TreeNode:
@@ -133,13 +137,15 @@ class BinaryTree:
         while queue:
             node=queue.popleft()
             if tree:
-                if x:=tree.popleft():
-                    node.left=TreeNode(x)
-                    queue.append(node.left)
+                if left_node:=tree.popleft():
+                    if left_node!='*':
+                        node.left=TreeNode(left_node)
+                        queue.append(node.left)
             if tree:    
-                if x:=tree.popleft():
-                    node.right=TreeNode(x)
-                    queue.append(node.right)
+                if right_node:=tree.popleft():
+                    if right_node!="*":
+                        node.right=TreeNode(right_node)
+                        queue.append(node.right)
         return root
     
     def BuildBinaryTreeFromInOrderAndPostOrder(self,preorder: List[int], inorder: List[int])->TreeNode:
