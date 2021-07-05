@@ -1,7 +1,6 @@
-from easyBT.binarytree import TreeNode
+from binarytree import TreeNode
 from typing import List
 from binarytree import BinaryTree
-
 
 
 class BinarySearchTree(BinaryTree):
