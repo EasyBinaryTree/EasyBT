@@ -45,13 +45,15 @@ class BinaryTree:
         result=[]
         queue=[root]
         while queue:
+            row=[]
             for _ in range(len(queue)):
                 temp=queue.pop(0)
-                result.append(temp.val)
+                row.append(temp.val)
                 if temp.left:
                     queue.append(temp.left)
                 if temp.right:
                     queue.append(temp.right)
+            result.append(row)
         return result
     
     """def verticalOrderTraversal(self,root:TreeNode)->int:return"""
