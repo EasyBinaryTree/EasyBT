@@ -1,5 +1,5 @@
 from typing import List
-
+from collections import deque
 
 class TreeNode:
     def __init__(self,val,left=None,right=None)->None:   
@@ -127,17 +127,18 @@ class BinaryTree:
     
     def DesializeTree(self,data:List[int]) -> TreeNode:
         if not data:return None
-        root=TreeNode(data.pop(0))
-        queue=[root]
+        tree=deque(data)
+        root=TreeNode(tree.popleft())
+        queue=deque([root])
         while queue:
-            node=queue.pop(0)
-            if node:
-                if len(data)>0 and data[0]!='*':
-                    node.left=TreeNode(data.pop(0))
+            node=queue.popleft()
+            if tree:
+                if x:=tree.popleft():
+                    node.left=TreeNode(x)
                     queue.append(node.left)
-            if node:    
-                if len(data)>0 and data[0]!='*':
-                    node.right=TreeNode(data.pop(0))
+            if tree:    
+                if x:=tree.popleft():
+                    node.right=TreeNode(x)
                     queue.append(node.right)
         return root
     
