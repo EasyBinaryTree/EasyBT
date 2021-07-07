@@ -9,6 +9,7 @@ Make Binary trees easy for everyone it is used to serialize-deserialize  binary 
 5. LevelOrderTraversal
 6. MirrorTree
 7. LeafNodes,NumberOfLeafNodes
+8. VisualizeTree
 
 ## Installation
 [![Python Version](https://img.shields.io/badge/python-3.0-brightgreen.svg)](https://python.org)
@@ -50,10 +51,38 @@ root=bt.DesializeTree(nums)
                                     6      
 ```
 
+## Documetation
+### Visualize Tree
+
+```python
+from easybt.binarytree import BinaryTree
+
+# Create Object
+bt=BinaryTree()
+
+# add nodes in list
+nums=x=[1,2,3,4,5,6]
+
+# it will return root node of the tree
+root=bt.DesializeTree(nums) 
+
+VisualizeTree(root)
+
+#it will print
+
+"""
+    ['_', '_', '1', '_', '_']
+
+    ['_', '2', '_', '3', '_']
+
+    ['4', '_','5,6', '_', '_']
+"""
+
+```
+
+
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
-
-Please make sure to update tests as appropriate.
 
 #### Contributors
 

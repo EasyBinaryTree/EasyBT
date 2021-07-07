@@ -137,15 +137,15 @@ class BinaryTree:
         while queue:
             node=queue.popleft()
             if tree:
-                if left_node:=tree.popleft():
-                    if left_node!='*':
+                left_node=tree.popleft()
+                if left_node!=None and left_node!='*':
                         node.left=TreeNode(left_node)
                         queue.append(node.left)
             if tree:    
-                if right_node:=tree.popleft():
-                    if right_node!="*":
-                        node.right=TreeNode(right_node)
-                        queue.append(node.right)
+                right_node=tree.popleft()
+                if right_node!=None and right_node!="*":
+                    node.right=TreeNode(right_node)
+                    queue.append(node.right)
         return root
     
     def BuildBinaryTreeFromInOrderAndPostOrder(self,preorder: List[int], inorder: List[int])->TreeNode:
@@ -153,10 +153,51 @@ class BinaryTree:
             print("InOrder and PostOrder are not equal")
             return
         dict_={}
+        preorder_index=0
         for i,e in enumerate(inorder):
             dict_[e]=i
         def buildTree(left:int,right:int)->TreeNode:
+            nonlocal preorder_index
             if left>right:
                 return
+            index=dict_[preorder[preorder_index]]
+            root=TreeNode(preorder[preorder_index])
+            preorder_index+=1
             
+            root.left=buildTree(left,index-1)
+            root.right=buildTree(index+1,right)
+            return root
+        return buildTree(0,len(inorder)-1)
+    
+    def VisualizeTree(self,root:TreeNode)->None:
+        height=self.Height(root)
+        rows,cols=height+1,2**height+1
+        mat=[["_"]*cols for _ in range(rows)]
+        def buildMat(root:TreeNode,row:int,col:int)->None:
+            if root==None:return
+            if mat[row][col]=="_":
+                mat[row][col]=str(root.val)
+            else:
+                if int(mat[row][col]):
+                    mat[row][col]=mat[row][col]+","+str(root.val)
+            if root.left:buildMat(root.left,row+1,col-1)
+            if root.right:buildMat(root.right,row+1,col+1)
+        buildMat(root,0,cols//2)
+        for i in range(len(mat)):
+            print(mat[i])
+            print()
         
+                
+            
+
+"""
+               [1,2,3,4,5,6]         [1,2,None,4,5,6]
+
+                     1             |       1
+                    / \            |      / 
+                   2   3           |     2  
+                  /\   /           |    / \
+                 4  5 6            |   4   5    
+                                   |  /
+                                   | 6      
+"""
