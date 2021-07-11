@@ -79,6 +79,22 @@ VisualizeTree(root)
 """
 
 ```
+## Insertion IN BinarySearchTree(BST)
+```python
+        
+         
+```
+
+```python
+
+         100                               100
+        /   \        Insert 40            /    \
+      20     500    --------->          20     500 
+     /  \                              /  \  
+    10   30                           10   30
+                                              \   
+                                              40
+```
 
 
 ## Contributing

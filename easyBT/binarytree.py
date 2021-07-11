@@ -1,6 +1,10 @@
 from typing import List
 from collections import deque
 
+
+
+from binarysearchtree import BinarySearchTree
+
 class TreeNode:
     def __init__(self,val,left=None,right=None)->None:   
         self.left=left
@@ -9,8 +13,22 @@ class TreeNode:
         
 
 class BinaryTree:
+    """Methods :
+        1. SerializeTree
+        2. DesializeTree
+        3. VisualizeTree
+        4. InOrderTraversal ,PostOrderTraversal, PreOrderTraversal
+        5. LevelOrderTraversal
+        6. Height
+        7. MirrorTree
+        8. NumberOfLeafNodes
+        9. LeafNodes
+        10. Diameter
+    """
     
-    def InOrderTraversal(self,root:TreeNode) -> List:
+    def InOrderTraversal(self,root:TreeNode) -> List[int]:
+        """return : List[int]\nobjective : InOrderTraversal will gives the inorder traversal of the binary tree
+        """
         inoder_list=[]
         def inorder(root:TreeNode) -> None:
             if root:
@@ -20,7 +38,9 @@ class BinaryTree:
         inorder(root)
         return inoder_list
     
-    def PostOrderTraversal(self,root:TreeNode) -> List:
+    def PostOrderTraversal(self,root:TreeNode) -> List[int]:
+        """return : List[int]\nobjective : PostOrderTraversal will gives the post order traversal of the binary tree
+        """
         postorder_list=[]
         def postorder(root:TreeNode) -> None:
             if root:
@@ -30,7 +50,9 @@ class BinaryTree:
         postorder(root)
         return postorder_list
     
-    def PreOrderTraversal(self,root:TreeNode) -> List:
+    def PreOrderTraversal(self,root:TreeNode) -> List[int]:
+        """return : List[int]\nobjective : PreOrderTraversal will gives the pre order traversal of the binary tree
+        """
         preorder_list=[]
         def preorder(root:TreeNode) -> None:
             if root:
@@ -41,6 +63,24 @@ class BinaryTree:
         return preorder_list
     
     def LevelOrderTraversal(self,root:TreeNode)->List:
+        """
+        The fuction returns level order travesal of the binary tree
+        
+        Parameters :
+                    root=TreeNode
+        return : 
+                 List[List[int]]
+        Approach : 
+                   Used Breadth first search algorithm
+        Example :   
+
+                     1             
+                    / \            
+                   2   3         => [[1],[2,3],[4,5,6]]  
+                  /\   /          
+                 4  5 6    
+        """
+        
         if not root:[]
         result=[]
         queue=[root]
@@ -56,9 +96,23 @@ class BinaryTree:
             result.append(row)
         return result
     
-    """def verticalOrderTraversal(self,root:TreeNode)->int:return"""
+    # """def verticalOrderTraversal(self,root:TreeNode)->int:return"""
     
     def Diameter(self,root:TreeNode)->int:
+        """
+        The Function will returns the lenght of the diameter of the binary tree
+        
+        Parameters:
+                    root=TreeNode
+        return : 
+                 int
+        Defination: 
+                    The diameter of a binary tree is the length of the longest path between any two nodes in a tree. 
+                    This path may or may not pass through the root.
+        Approach : 
+                    Using Depth First Search Algorithm
+        """
+        
         def diameter(root:TreeNode)->tuple(int):
             if root==None:
                 return -1,0
@@ -69,12 +123,36 @@ class BinaryTree:
         return diameter(root)[0]
     
     def Height(self,root:TreeNode)->int:
+        """
+        The Function will returns the height of the binary tree
+        
+        Parameters:
+                    root=TreeNode
+        return : 
+                 int
+        Defination: 
+                    The height of a binary tree is the maximum distance from the root node to the leaf node.
+        Approach : 
+                    Using Depth First Search Algorithm
+        """
         if root==None:
             return -1
         return max(self.Height(root.left),
                         self.Height(root.right))+1
         
     def MirrorTree(self,root:TreeNode)->None:
+        """
+        The Function will returns the height of the binary tree
+        
+        Parameters:
+                    root=TreeNode
+        return : 
+                 int
+        Defination: 
+                    The height of a binary tree is the maximum distance from the root node to the leaf node.
+        Approach : 
+                    Using Depth First Search Algorithm
+        """
         if root==None or (root.left==None and root.right==None):
             return
         r_x=root.right
@@ -98,6 +176,18 @@ class BinaryTree:
         return self.NumberOfLeafNodes(root.left)+self.NumberOfLeafNodes(root.right)
     
     def LeafNodes(self,root:TreeNode)->List[int]:
+        """
+        Parameters:
+                    root=TreeNode
+        return : 
+                 List[int]
+                 
+        Defination:
+                    Serialization is the process of converting a data structure or object into a sequence of bits so that it can be stored in a file or memory buffer, 
+                    or transmitted across a network connection link to be reconstructed later in the same or another computer environment.
+        Approach : 
+                    Using Depth First Search Algorithm
+        """
         nodes=[]
         def dfs(root:TreeNode):
             if root==None:
@@ -113,6 +203,19 @@ class BinaryTree:
     
     
     def SerializeTree(self,root:TreeNode) -> List[int]:
+        """
+        Tree to list
+        Parameters:
+                    root=TreeNode
+        return : 
+                 List[int]
+                 
+        Defination:
+                    Serialization is the process of converting a data structure or object into a sequence of bits so that it can be stored in a file or memory buffer, 
+                    or transmitted across a network connection link to be reconstructed later in the same or another computer environment.
+        Approach : 
+                    Using Breadth First Search Algorithm
+        """
         if not root:return []
         queue=[root]
         result=[]
@@ -130,6 +233,18 @@ class BinaryTree:
         return result
     
     def DesializeTree(self,data:List[int]) -> TreeNode:
+        """
+        List To Binary Tree
+        Parameters:
+                    root=TreeNode
+        return : 
+                 List[int]
+                 
+        Defination:
+                    Desialize is the process of converting 
+        Approach : 
+                    Using Breadth First Search Algorithm
+        """
         if not data:return None
         tree=deque(data)
         root=TreeNode(tree.popleft())
@@ -187,7 +302,9 @@ class BinaryTree:
             print(mat[i])
             print()
         
-                
+
+
+
             
 
 """
