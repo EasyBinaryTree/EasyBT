@@ -129,3 +129,4 @@ dmypy.json
 .pyre/
 easyBT/testing.py
 TODO
+PackageTesting/
