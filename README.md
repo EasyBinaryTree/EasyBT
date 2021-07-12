@@ -2,8 +2,8 @@
 # EasyBT
 
 Make Binary trees easy for everyone it is used to serialize-deserialize  binary trees and performs much more operations
-1. Serialize (tree nodes to list )
-2. Deserialize (list to tree nodes )
+1. SerializeTree (tree nodes to list )
+2. DesializeTree (list to tree nodes )
 3. Height (Finds height of the tree) and Diameter (Finds diameter of the tree)
 4. InOrderTraversal,PostOrderTraversal,PreOrderTraversal
 5. LevelOrderTraversal
@@ -51,9 +51,15 @@ root=bt.DesializeTree(nums)
                                     6      
 ```
 
-## Documetation
-### Visualize Tree
+# Documetation
 
+#### To Read Documentation
+```python
+
+print(bt.SerializeTree.__doc__)
+
+```
+### DesializeTree
 ```python
 from easybt.binarytree import BinaryTree
 
@@ -61,10 +67,23 @@ from easybt.binarytree import BinaryTree
 bt=BinaryTree()
 
 # add nodes in list
-nums=x=[1,2,3,4,5,6]
+nums=[100,500,20,10,30]
 
-# it will return root node of the tree
+# it will return the root node of the tree
+
 root=bt.DesializeTree(nums) 
+
+              100                       
+             /   \             
+           500     20             
+          /  \                              
+         10   30 
+
+```
+
+### Visualize Tree
+
+```python
 
 VisualizeTree(root)
 
@@ -79,21 +98,77 @@ VisualizeTree(root)
 """
 
 ```
-## Insertion IN BinarySearchTree(BST)
+## BinarySearch Tree
+
+11. searchInBST (finds element in the bst)
+12. createBST (create bst)
+13. minValueNodeInBST (finds min value in the bst)
+14. maxValueNodeInBST (finds max value in the bst)
+15. deleteNode (delete node from the bst)
+
+
 ```python
-        
+from easybt.binarytree import BinarySearchTree 
+
+bst=BinarySearchTree()
+```
+
+### Creation 
+
+```python
+
+data=[100,500,20,10,30]
+
+root=None
+
+root=bst.createBST(data=data)
+
+
+              100                       
+             /   \             
+           20     500             
+          /  \                              
+         10   30 
          
 ```
 
+### Insertion
+
+
 ```python
 
-         100                               100
-        /   \        Insert 40            /    \
-      20     500    --------->          20     500 
-     /  \                              /  \  
-    10   30                           10   30
-                                              \   
-                                              40
+ bst.insertInBST(root,40) or root=bst.insertInBST(root,40)
+
+
+         100                                      100
+        /   \         bst.insertInBST(40)        /    \
+      20     500       --------->              20     500 
+     /  \                                     /  \  
+    10   30                                  10   30
+                                                   \   
+                                                   40
+```
+
+### Deletion
+
+```python
+bst.deleteNode(root,20)
+
+              50                             50
+            /    \      deleteNode(20)     /    \
+          30      70       --------->     30     70 
+         /  \    /  \                      \    /  \ 
+       20   40  60   80                    40  60   80
+
+
+bst.deleteNode(root,30)
+
+             50                              50
+           /    \       deleteNode(30)      /   \
+          30     70       --------->      40     70 
+            \    /  \                           /  \ 
+            40  60   80                       60   80
+
 ```
 
 

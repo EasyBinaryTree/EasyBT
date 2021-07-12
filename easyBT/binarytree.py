@@ -305,6 +305,23 @@ class BinaryTree:
 
 
 class BinarySearchTree(BinaryTree):
+    """Methods :
+        1. SerializeTree
+        2. DesializeTree
+        3. VisualizeTree
+        4. InOrderTraversal ,PostOrderTraversal, PreOrderTraversal
+        5. LevelOrderTraversal
+        6. Height
+        7. MirrorTree
+        8. NumberOfLeafNodes
+        9. LeafNodes
+        10. Diameter
+        11. searchInBST
+        12. createBST / updateBST
+        13. minValueNodeInBST
+        14. maxValueNodeInBST
+        15. deleteNode
+    """
     
     def PostOrderToBinarySearchTree(self,postorder:List[int])->TreeNode:
         return
@@ -319,17 +336,39 @@ class BinarySearchTree(BinaryTree):
         return self.searchInBST(root.right,target)
     
     def createBST(self,data:List[int],root=None)->TreeNode:
+        """
+        Create Binary search tree from unsorted list
+        if root is not None then is will update your tree
+        
+        Parameters:
+                data:List[int]
+                root:TreeNode or root=None
+        return : 
+                root:TreeNode
+        Approach : 
+                 Using Recursion
+        """
         if not len(data):
             return root
         if root==None:
             root=TreeNode(data[0])
         for i in data[1:]:
-            root=self.insertInBST(root,i)
-        
+            root=self.insertInBST(root,i)   
         return root
         
     
     def insertInBST(self,root:TreeNode,element:int)->TreeNode:
+        """
+        Insert element in the Binary search tree 
+        
+        Parameters:
+                data:List[int]
+                root:TreeNode or root=None
+        return : 
+                root:TreeNode
+        Approach : 
+                 Using Recursion
+        """
         if root==None:
             return TreeNode(val=element)
         else:
@@ -360,21 +399,36 @@ class BinarySearchTree(BinaryTree):
         if root==None:
             return root
         if root.val>target:
-            return self.deleteNode(root.left,target)
+            root.left=self.deleteNode(root.left,target)
         elif root.val<target:
-            return self.deleteNode(root.right,target)
+            root.right=self.deleteNode(root.right,target)
         else:
-            if root.left==None:
-                temp=root.right
-                root=None
-                return temp
-            if root.right==None:
-                temp=root.left
-                root=None
-                return temp
-            temp=self.minValueNodeInBST(root.right)
-            root.val=temp.val
-            root=self.deleteNode(root.right,temp.val)
+            
+            # if root.left==None:
+            #     temp=root.right
+            #     root=None
+            #     return temp
+            # if root.right==None:
+            #     temp=root.left
+            #     root=None
+            #     return temp
+            # temp=self.minValueNodeInBST(root.right)
+            # root.val=temp.val
+            # root=self.deleteNode(root.right,temp.val)
+            
+            if root.left and root.right:
+                temp=self.maxValueNodeInBST(root.left)
+                root.val=temp.val
+                root.left=self.deleteNode(root.left,temp.val)
+                return root
+            elif root.left:
+                return root.left
+            elif root.right:
+                return root.right
+            else:
+                return None
+                
+                
         return root
 
 

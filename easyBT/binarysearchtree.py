@@ -54,13 +54,12 @@ class BinarySearchTree(BinaryTree):
         return temp
     
     def deleteNode(self,root:TreeNode,target:int)->TreeNode:
-        
         if root==None:
             return root
         if root.val>target:
-            return self.deleteNode(root.left,target)
+            root.right=self.deleteNode(root.left,target)
         elif root.val<target:
-            return self.deleteNode(root.right,target)
+            root.left=self.deleteNode(root.right,target)
         else:
             if root.left==None:
                 temp=root.right
@@ -72,5 +71,5 @@ class BinarySearchTree(BinaryTree):
                 return temp
             temp=self.minValueNodeInBST(root.right)
             root.val=temp.val
-            root=self.deleteNode(root.right,temp.val)
+            root.right=self.deleteNode(root.right,temp.val)
         return root
