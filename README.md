@@ -1,5 +1,5 @@
 
-# EasyBT
+# easyBT
 
 Make Binary trees easy for everyone it is used to serialize-deserialize  binary trees and performs much more operations
 1. SerializeTree (tree nodes to list )
@@ -14,16 +14,16 @@ Make Binary trees easy for everyone it is used to serialize-deserialize  binary 
 ## Installation
 [![Python Version](https://img.shields.io/badge/python-3.0-brightgreen.svg)](https://python.org)
 
-Use the package manager [pip](pypi.org/project/easybt/) to install easybt.
+Use the package manager [pip](pypi.org/project/easyBT/) to install easyBT.
 
 ```bash
-pip install easybt
+pip install easyBT
 ```
 
 ## Usage
 
 ```python
-from easybt.binarytree import BinaryTree
+from easyBT.binarytree import BinaryTree
 
 # Create Object
 bt=BinaryTree()
@@ -61,7 +61,7 @@ print(bt.SerializeTree.__doc__)
 ```
 ### DesializeTree
 ```python
-from easybt.binarytree import BinaryTree
+from easyBT.binarytree import BinaryTree
 
 # Create Object
 bt=BinaryTree()
@@ -108,7 +108,7 @@ VisualizeTree(root)
 
 
 ```python
-from easybt.binarytree import BinarySearchTree 
+from easyBT.binarytree import BinarySearchTree 
 
 bst=BinarySearchTree()
 ```
